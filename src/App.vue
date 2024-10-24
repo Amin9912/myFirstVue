@@ -15,20 +15,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-import Todoslist from './components/TodosList.vue'
-import TodoForm from './components/TodoForm.vue'
 import NavBar from "./components/layout/NavBar.vue";
 
 export default{
   components:{  
-    Todoslist,TodoForm, NavBar
+    NavBar
   },
   computed:{
-    ...mapGetters({
-      completedTodo:'completedTodo',
-      pendingTodo:'pendingTodo'
-    })
   }
 }
 </script>

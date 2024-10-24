@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="input-group mb-3 w-50 float-end">
                         <input type="number" class="form-control" placeholder="Select Total" aria-label="Select Total" aria-describedby="button-addon2" v-model="quantity" min="1" required>
-                        <button class="btn btn-primary" type="button" id="button-addon2" @click="addToCart">Button</button>
+                        <button class="btn btn-primary" type="button" id="button-addon2" @click="onAddToCart">Add</button>
                     </div>
                 </div>
             </div>
@@ -22,32 +22,34 @@
 </template>
 
 <script>
-    export default {
-        data(){
-            return{
-                quantity: 1,
-            }
-        },
-        props:[
-            "id"
-        ],
-        computed: {
-            product(){
-                return this.$store.state.product
-            }
-        },
-        methods:{
-            addToCart(){
-                this.$store.dispatch('addToCart',{
-                    product: this.product,
-                    quantity: this.quantity
-                })
-            }
-        },
-        mounted(){
-            this.$store.dispatch('getProduct', this.id)
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex';
+
+export default {
+    data(){
+        return{
+            quantity: 1,
         }
+    },
+    props:[
+        "id"
+    ],
+    computed: {
+        ...mapState("product",["product"])
+    },
+    methods:{
+        ...mapActions("cart", ["addToCart"]),
+        ...mapActions("product", ["getProduct"]),
+        onAddToCart(){
+            this.addToCart({
+                product: this.product,
+                quantity: this.quantity
+            })
+        }
+    },
+    mounted(){
+        this.getProduct(this.id)
     }
+}
 </script>
 
 <style>

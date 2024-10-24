@@ -8,17 +8,19 @@
 
 <script>
 import ProductCard from './ProductCard.vue';
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex';
 export default {
     components:{
         ProductCard
     },
     computed:{
-        products(){
-            return this.$store.state.products
-        }
+        ...mapState('product',['products']),
     },
-    mounted(){
-        this.$store.dispatch('getProducts')
+    methods: {
+        ...mapActions('product', ['getProducts']) 
+    },
+    mounted() {
+    this.getProducts(); 
     }
 }
 </script>
