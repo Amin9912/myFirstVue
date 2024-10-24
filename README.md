@@ -34,10 +34,19 @@ npm run build
 npm run lint
 ```
 
-echo "# myFirstVue" >> README.md
+### Run DB Json
+
+```sh
+json-server --watch db.json
+```
+
+### How to commit and push
+
+```sh
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Amin9912/myFirstVue.git
 git push -u origin main
+```
