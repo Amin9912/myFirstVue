@@ -12,14 +12,15 @@
   <div class="container">
     <router-view></router-view>
   </div>
+  <NotificationList />
 </template>
 
 <script>
 import NavBar from "./components/layout/NavBar.vue";
-
+import NotificationList from "./components/notification/NotificationList.vue";
 export default{
   components:{  
-    NavBar
+    NavBar, NotificationList
   },
   computed:{
   }
